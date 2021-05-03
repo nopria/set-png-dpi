@@ -17,7 +17,7 @@
 # data: x_density / 4 bytes + y_resolution / 4 bytes + unit / 1 byte (0=unknown, 1=meter)
 # CRC 4 bytes
 
-import sys,os,zlib,uuid,shutil
+import sys,os,zlib,shutil
 
 # 1st command line argument: PNG file to process
 filename = sys.argv[1]
@@ -48,7 +48,7 @@ def read_png_chunk(f):
     """
     Yields all chunks of a PNG image file, performing individual chunk CRC validation.
     Make sure to have read the initial PNG signature.
-    :return: a tuple of byte strings of a chunk: (length, type, data, CRC).
+    :yield: a tuple of byte strings defining a complete chunk: (length, type, data, CRC).
     """
     while True:
         chunk_len = f.read(4)
