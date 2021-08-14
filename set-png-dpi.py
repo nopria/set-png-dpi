@@ -63,7 +63,7 @@ def read_png_chunk(f):
         yield chunk_len, chunk_typ, chunk_dat, chunk_crc
 
 
-pHYs_exist = False # flag needed to separate2 cases: (1) pHYs chunk exists and must be overwritten, (2) pHYs chunk exists and must be added
+pHYs_exist = False # flag needed to separate2 cases: (1) pHYs chunk exists and must be overwritten, (2) pHYs chunk does not exists and must be added
 with open(filename, 'rb+') as f:
     initial_signature = f.read(8)
     if initial_signature == bytes.fromhex('89504E470D0A1A0A'): # processed file has a valid PNG initial signature
